@@ -18,23 +18,27 @@ for (let i = 0; i < btn.length; i++) {
   });
 }
 // Timer
-let eventDate = "14 oct 2023";
+let eventDate = "14 jan 2023";
 let timerFunction = setInterval(() => {
   $("#event-date").text(eventDate);
   const curentDate = new Date().getTime();
   const finalDate = new Date(eventDate).getTime();
   const distanceTime = finalDate - curentDate;
-  const days = distanceTime / (1000 * 60 * 60 * 24);
-  const hours = (distanceTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
-  const minutes = (distanceTime % (1000 * 60 * 60)) / (1000 * 60);
-  const seconds = (distanceTime % (1000 * 60)) / 1000;
+  let days = distanceTime / (1000 * 60 * 60 * 24);
+  let hours = (distanceTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
+  let minutes = (distanceTime % (1000 * 60 * 60)) / (1000 * 60);
+  let seconds = (distanceTime % (1000 * 60)) / 1000;
+  if (distanceTime < 0) {
+    clearInterval(timerFunction);
+    days = 0
+    hours = 0
+    minutes = 0
+    seconds = 0
+  }
   $("#dayDiv").text(`${Math.trunc(days)} D`);
   $("#hourDiv").text(`${Math.trunc(hours)} H`);
   $("#minuteDiv").text(`${Math.trunc(minutes)} M`);
   $("#secondDiv").text(`${Math.trunc(seconds)} S`);
-  if (distanceTime < 0) {
-    clearInterval(timerFunction);
-  }
 }, 1000);
 // Input
 $("#textarea").on("input", () => {
