@@ -18,7 +18,7 @@ for (let i = 0; i < btn.length; i++) {
   });
 }
 // Timer
-let eventDate = "8 mar 2023";
+let eventDate = "14 oct 2023";
 let timerFunction = setInterval(() => {
   $("#event-date").text(eventDate);
   const curentDate = new Date().getTime();
